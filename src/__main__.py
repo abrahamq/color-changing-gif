@@ -5,8 +5,9 @@ def filter_color( im):
     #(r,g,b) = rgb
     source = im.split()
     R, G, B = 0, 1, 2
+    zero = im.point(lambda i: 0)
     getRed = source[R]
-    mask = getRed.point(lambda i: i > 100 and 255)
+    redMask = getRed.point(lambda i: i > 100 and 255)
 
     print(getRed)
     getGreen = source[G].point(lambda i: 0)
@@ -15,9 +16,9 @@ def filter_color( im):
     #getGreen.show()
     #getRed.show()
 
-    res = Image.merge(im.mode, (mask,getGreen,getBlue))
+    res = Image.merge(im.mode, (redMask,getGreen,getBlue))
     other = Image.merge(im.mode, (getRed,getGreen,getBlue))
-    other.show()
+    #other.show()
     res.show()
 
 
